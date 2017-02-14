@@ -2,13 +2,18 @@
 #include "Structure.h"
 #include <string>
 
+using namespace std;
+
 Structure::Structure()
 {
 }
 
 void Structure::Insert(string strWord)
 {
-
+	if (root == NULL)
+	{
+		root = new Node(strWord);
+	}
 }
 
 Node* Structure::Search(string strWord)

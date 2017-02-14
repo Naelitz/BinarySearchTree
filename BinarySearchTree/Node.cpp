@@ -1,9 +1,12 @@
-#include "Node.h"
 #include "stdafx.h"
+#include "Node.h"
 #include <string>
 
-Node::Node()
+using namespace std;
+
+Node::Node(string strInputValue)
 {
+	strValue = strInputValue;
 }
 
 void Node::SetValue(string strNewWord)

@@ -12,16 +12,18 @@ using namespace std;
 void GetCommand();
 void GetParameter();
 
+int intInput;
+Structure searchStructure;
+string strInput;
+string strReturnValue;
+Node* nodeFound;
+string line;
+
+int intCounter = 1;
+
 int main()
 {
-	int intInput;
-	Structure searchStructure;
-	string strInput;
-	string strReturnValue;
-	Node* nodeFound;
-	string line;
-	
-	int intCounter = 1;
+
 	//Node FirstNode;
 	//Node* pntCurrentNode;
 Start:
@@ -79,13 +81,13 @@ Start:
 			//todo: Write search function
 			cin >> strInput;
 			nodeFound = searchStructure.Search(strInput);
-			if (nodeFound = NULL)
+			if (nodeFound == NULL)
 			{
 				cout << strInput << "  0" << endl;
 			}
 			else
 			{
-				cout << nodeFound->GetValue << "  " << nodeFound->GetOccurences << endl;
+				cout << nodeFound->GetValue() << "  " << nodeFound->GetOccurences() << endl;
 			}
 			
 		}

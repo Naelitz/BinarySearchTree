@@ -4,9 +4,9 @@
 class Structure
 {
 public:
-	void Insert(string strWord);
+	void Insert(std::string strWord);
 	void Delete();
-	Node* Search(string strWord);
+	Node* Search(std::string strWord);
 	Node Min();
 	Node Max();
 
@@ -15,6 +15,6 @@ public:
 private:
 	Node* root;
 	Node* currentNode;
-	void Insert(string strWord, Node newNode);
+	void Insert(std::string strWord, Node newNode);
 };
 
