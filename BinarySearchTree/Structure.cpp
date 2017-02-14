@@ -1,11 +1,22 @@
 #include "stdafx.h"
 #include "Structure.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
 Structure::Structure()
 {
+}
+
+string Structure::Min()
+{
+	TreeMin(root);
+}
+
+void Structure::List()
+{
+	Traversal(root);
 }
 
 void Structure::Insert(string strWord)
@@ -28,16 +39,67 @@ string Structure::Search(string strWord)
 	return strOutput;
 }
 
+string Structure::Next(string strWord)
+{
+	currentNode = treeSearch(strWord);
+	if (currentNode == nullptr)
+	{
+		strOutput = "Input string not found";
+		return strOutput;
+	}
+	else
+	{
+		if (currentNode->GetRightNode() != nullptr)
+		{
+			//todo:Return minimum right
+		}
+	}
+}
+
+void Structure::Traversal(Node* startNode)
+{
+	if (startNode != nullptr)
+	{
+		Traversal(startNode->GetLeftNode());
+		cout << startNode->GetValue() << " " << startNode->GetOccurences() << endl;
+		Traversal(startNode->GetRightNode());
+	}
+}
+
+void Structure::TreeMin(Node* startNode)
+{
+	if (startNode == nullptr)
+	{
+		cout << "Tree is empty" << endl;
+	}
+	else
+	{
+		if (startNode->GetRightNode() != nullptr)
+		{
+			TreeMin(startNode->GetRightNode());
+		}
+		else
+		{
+			pastNode = startNode->GetLastNode();
+		}
+		while (pastNode != nullptr && startNode == pastNode->GetRightNode())
+		{
+			startNode = pastNode;
+
+		}
+	}
+}
+
 Node* Structure::treeSearch(string strWord)
 {
 	currentNode = root;
-	while (currentNode != NULL)
+	while (currentNode != nullptr)
 	{
 		if (currentNode->GetValue() == strWord)
 		{
 			return currentNode;
 		}
-		else if (currentNode->GetValue() < strWord)
+		else if (currentNode->GetValue() > strWord)
 		{
 			currentNode = currentNode->GetLeftNode();
 		}
@@ -59,8 +121,9 @@ void Structure::treeInsert(string strWord)
 		if (currentNode->GetValue() == strWord)
 		{
 			currentNode->IncrementOccurence();
+			return;
 		}
-		else if (currentNode->GetValue() < strWord)
+		else if (currentNode->GetValue() > strWord)
 		{
 			currentNode = currentNode->GetLeftNode();
 		}
@@ -69,19 +132,19 @@ void Structure::treeInsert(string strWord)
 			currentNode = currentNode->GetRightNode();
 		}
 	}
-	Node newNode(strWord);
-	newNode.SetLastNode(pastNode);
+	auto newNode = new Node(strWord);
+	newNode->SetLastNode(pastNode);
 	if (pastNode == NULL)
 	{
-		root = &newNode;
+		root = newNode;
 	}
-	else if (newNode.GetValue() < pastNode->GetValue())
+	else if (newNode->GetValue() < pastNode->GetValue())
 	{
-		pastNode->SetLeftNode(&newNode);
+		pastNode->SetLeftNode(newNode);
 	}
 	else
 	{
-		pastNode->SetRightNode(&newNode);
+		pastNode->SetRightNode(newNode);
 	}
 
 }

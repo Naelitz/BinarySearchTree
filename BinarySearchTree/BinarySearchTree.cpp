@@ -43,11 +43,10 @@ Start:
 		}
 		else if (strInput == "list")
 		{
-			//todo: Write list function
+			searchStructure.List();
 		}
 		else if (strInput == "help")
 		{
-			//todo: Write help function
 			cout << "insert <string>" << endl;
 			cout << "delete <string>" << endl;
 			cout << "search <string>" << endl;
@@ -61,7 +60,6 @@ Start:
 		}
 		else if (strInput == "exit")
 		{
-			//todo: Write exit function
 			goto Exit;
 		}
 		
@@ -71,7 +69,6 @@ Start:
 	{
 		if (strInput == "insert")
 		{
-			//todo: Write insert function
 			GetParameter();
 			searchStructure.Insert(strInput);
 		}
@@ -81,7 +78,6 @@ Start:
 		}
 		else if (strInput == "search")
 		{
-			//todo: Write search function
 			cin >> strInput;
 			strOutput = searchStructure.Search(strInput);
 			cout << strOutput << endl;
