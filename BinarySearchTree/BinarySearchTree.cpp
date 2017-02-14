@@ -15,6 +15,7 @@ void GetParameter();
 int intInput;
 Structure searchStructure;
 string strInput;
+string strOutput;
 string strReturnValue;
 Node* nodeFound;
 string line;
@@ -71,6 +72,8 @@ Start:
 		if (strInput == "insert")
 		{
 			//todo: Write insert function
+			GetParameter();
+			searchStructure.Insert(strInput);
 		}
 		else if (strInput == "delete")
 		{
@@ -80,15 +83,8 @@ Start:
 		{
 			//todo: Write search function
 			cin >> strInput;
-			nodeFound = searchStructure.Search(strInput);
-			if (nodeFound == NULL)
-			{
-				cout << strInput << "  0" << endl;
-			}
-			else
-			{
-				cout << nodeFound->GetValue() << "  " << nodeFound->GetOccurences() << endl;
-			}
+			strOutput = searchStructure.Search(strInput);
+			cout << strOutput << endl;
 			
 		}
 		else if (strInput == "next")

@@ -18,6 +18,7 @@ public:
 	Node* GetLeftNode();
 	Node* GetRightNode();
 	Node* GetLastNode();
+	Node();
 	Node(std::string strInputValue);
 	~Node();
 };

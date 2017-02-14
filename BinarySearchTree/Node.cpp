@@ -4,6 +4,11 @@
 
 using namespace std;
 
+Node::Node()
+{
+
+}
+
 Node::Node(string strInputValue)
 {
 	strValue = strInputValue;

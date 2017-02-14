@@ -6,15 +6,20 @@ class Structure
 public:
 	void Insert(std::string strWord);
 	void Delete();
-	Node* Search(std::string strWord);
-	Node Min();
-	Node Max();
-
+	std::string Search(std::string strWord);
+	std::string Min();
+	std::string Max();
+	std::string ReturnValue();
 	Structure();
 	~Structure();
 private:
 	Node* root;
 	Node* currentNode;
-	void Insert(std::string strWord, Node newNode);
+	Node* pastNode;
+	Node* treeSearch(std::string strWord);
+	Node foundNode;
+	void treeInsert(std::string strWord);
+	void treeDelete();
+	std::string strOutput;
 };
 
