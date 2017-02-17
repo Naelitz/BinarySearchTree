@@ -28,6 +28,21 @@ string Structure::Min()
 
 }
 
+string Structure::Max()
+{
+	if (root == nullptr)
+	{
+		strOutput = "Tree is empty";
+		return strOutput;
+	}
+	else
+	{
+		currentNode = TreeMax(root);
+		strOutput = currentNode->GetValue() + " " + std::to_string(currentNode->GetOccurences());
+		return strOutput;
+	}
+}
+
 // List just calls the traveral method.
 void Structure::List()
 {
@@ -57,6 +72,29 @@ string Structure::Search(string strWord)
 	return strOutput;
 }
 
+string Structure::Prev(string strWord)
+{
+	currentNode = treeSearch(strWord);
+	if (currentNode == nullptr)
+	{
+		strOutput = "Input string not found";
+		return strOutput;
+	}
+	else
+	{
+		currentNode = TreePredecessor(currentNode);
+		if (currentNode == nullptr)
+		{
+			strOutput = "No predecessor was found for " + strWord;
+		}
+		else
+		{
+			strOutput = currentNode->GetValue() + " " + std::to_string(currentNode->GetOccurences());
+		}
+		return strOutput;
+	}
+}
+
 // Public method that calls the tree successor function. This function also uses the tree search function to find where
 // in the tree it should start. If the string entered does not exist in the tree then alert the user. If we fall off the end
 // of the tree then there is no successor.
@@ -78,7 +116,7 @@ string Structure::Next(string strWord)
 		else
 		{
 			strOutput = currentNode->GetValue() + " " + std::to_string(currentNode->GetOccurences());
-			
+
 		}
 		return strOutput;
 
@@ -106,6 +144,35 @@ Node* Structure::TreeMin(Node* startNode)
 		startNode = startNode->GetLeftNode();
 	}
 	return startNode;
+}
+
+Node* Structure::TreeMax(Node* startNode)
+{
+	while (startNode->GetRightNode() != nullptr)
+	{
+		startNode = startNode->GetRightNode();
+	}
+	return startNode;
+}
+
+Node* Structure::TreePredecessor(Node* startNode)
+{
+	if (startNode == nullptr)
+	{
+		return nullptr;
+	}
+	if (startNode->GetLeftNode() != nullptr)
+	{
+		return TreeMax(startNode->GetLeftNode());
+	}
+	pastNode = startNode;
+	currentNode = startNode->GetLastNode();
+	while (currentNode != nullptr && pastNode == currentNode->GetLeftNode())
+	{
+		pastNode = currentNode;
+		currentNode = currentNode->GetLastNode();
+	}
+	return currentNode;
 }
 
 Node* Structure::TreeSuccessor(Node* startNode)

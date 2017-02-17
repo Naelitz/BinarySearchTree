@@ -41,6 +41,7 @@ Start:
 		else if (strInput == "max")
 		{
 			//todo: Write max function
+			cout << searchStructure.Max() << endl;
 		}
 		else if (strInput == "list")
 		{
@@ -94,6 +95,9 @@ Start:
 		else if (strInput == "prev")
 		{
 			//todo: Write the prev function
+			cin >> strInput;
+			strOutput = searchStructure.Prev(strInput);
+			cout << strOutput << endl;
 		}
 	}
 	else

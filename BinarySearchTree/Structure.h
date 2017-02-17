@@ -22,7 +22,8 @@ private:
 	Node* treeSearch(std::string strWord);
 	Node foundNode;
 	Node* TreeMin(Node* startNode);
-	void TreeMax(Node* startNode);
+	Node* TreeMax(Node* startNode);
+	Node* TreePredecessor(Node* startNode);
 	Node* TreeSuccessor(Node* startNode);
 	void Traversal(Node* startNode);
 	void treeInsert(std::string strWord);
