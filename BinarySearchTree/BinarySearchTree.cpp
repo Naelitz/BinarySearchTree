@@ -36,6 +36,7 @@ Start:
 		if (strInput == "min")
 		{
 			//todo: Write min function
+			cout << searchStructure.Min() << endl;
 		}
 		else if (strInput == "max")
 		{
@@ -86,6 +87,9 @@ Start:
 		else if (strInput == "next")
 		{
 			//todo: Write next function
+			cin >> strInput;
+			strOutput = searchStructure.Next(strInput);
+			cout << strOutput << endl;
 		}
 		else if (strInput == "prev")
 		{

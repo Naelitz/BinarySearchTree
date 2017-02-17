@@ -11,7 +11,9 @@ Structure::Structure()
 
 string Structure::Min()
 {
-	TreeMin(root);
+	currentNode = TreeMin(root);
+	strOutput = currentNode->GetValue() + " " + std::to_string(currentNode->GetOccurences());
+	return strOutput;
 }
 
 void Structure::List()
@@ -49,11 +51,19 @@ string Structure::Next(string strWord)
 	}
 	else
 	{
-		if (currentNode->GetRightNode() != nullptr)
+		currentNode = TreeSuccessor(currentNode);
+		if(currentNode == nullptr)
 		{
-			//todo:Return minimum right
+			strOutput = "No successor was found for " + strWord;
 		}
+		else
+		{
+			strOutput = currentNode->GetValue() + " " + std::to_string(currentNode->GetOccurences());
+			return strOutput;
+		}
+		
 	}
+	
 }
 
 void Structure::Traversal(Node* startNode)
@@ -66,7 +76,16 @@ void Structure::Traversal(Node* startNode)
 	}
 }
 
-void Structure::TreeMin(Node* startNode)
+Node* Structure::TreeMin(Node* startNode)
+{
+	while(startNode->GetLeftNode() != nullptr)
+	{
+		startNode = startNode->GetLeftNode(); 
+	}
+	return startNode;
+}
+
+Node* Structure::TreeSuccessor(Node* startNode)
 {
 	if (startNode == nullptr)
 	{
@@ -76,7 +95,8 @@ void Structure::TreeMin(Node* startNode)
 	{
 		if (startNode->GetRightNode() != nullptr)
 		{
-			TreeMin(startNode->GetRightNode());
+			pastNode = startNode;
+			return TreeMin(startNode->GetRightNode());
 		}
 		else
 		{
@@ -85,8 +105,19 @@ void Structure::TreeMin(Node* startNode)
 		while (pastNode != nullptr && startNode == pastNode->GetRightNode())
 		{
 			startNode = pastNode;
+			pastNode = pastNode->GetLastNode();
 
 		}
+		if(startNode->GetLeftNode() != nullptr && startNode == pastNode->GetLeftNode())
+		{
+			return pastNode;
+		}
+		else
+		{
+			currentNode = nullptr;
+			return currentNode;
+		}
+		
 	}
 }
 

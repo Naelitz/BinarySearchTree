@@ -10,6 +10,7 @@ public:
 	std::string Search(std::string strWord);
 	std::string Min();
 	std::string Max();
+	std::string Prev(std::string strWord);
 	std::string Next(std::string strWord);
 	std::string ReturnValue();
 	Structure();
@@ -20,8 +21,9 @@ private:
 	Node* pastNode;
 	Node* treeSearch(std::string strWord);
 	Node foundNode;
-	void TreeMin(Node* startNode);
+	Node* TreeMin(Node* startNode);
 	void TreeMax(Node* startNode);
+	Node* TreeSuccessor(Node* startNode);
 	void Traversal(Node* startNode);
 	void treeInsert(std::string strWord);
 	void treeDelete();
