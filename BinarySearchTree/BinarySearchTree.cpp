@@ -1,5 +1,8 @@
 // BinarySearchTree.cpp : Defines the entry point for the console application.
 //
+// Author: David Naelitz
+// EECS 2510 Non-Linear Data Structures
+// Date: February 10, 2017
 
 #include "stdafx.h"
 #include "Node.h"
@@ -12,41 +15,36 @@ using namespace std;
 void GetCommand();
 void GetParameter();
 
-int intInput;
 Structure searchStructure;
 string strInput;
 string strOutput;
-string strReturnValue;
-Node* nodeFound;
-string line;
-
-int intCounter = 1;
+int intCounter;
 
 int main()
 {
-
-	//Node FirstNode;
-	//Node* pntCurrentNode;
-Start:
+Start: // Gives a start point to go back to receiving a command
 
 	GetCommand();
 
+	// If the command that comes in cin does not require a parameter, then run further logic before taking any more input
+	// This will also help when a no parameter command is entered but a parameter is typed in the console it will
+	// see it as an invalid command on the next pass through.
 	if (strInput == "min" || strInput == "max" || strInput == "list" || strInput == "help" || strInput == "exit")
 	{
+		// Run the min function
 		if (strInput == "min")
 		{
-			//todo: Write min function
 			cout << searchStructure.Min() << endl;
 		}
 		else if (strInput == "max")
 		{
-			//todo: Write max function
 			cout << searchStructure.Max() << endl;
 		}
 		else if (strInput == "list")
 		{
 			searchStructure.List();
 		}
+		// Simplly print command options to the console window.
 		else if (strInput == "help")
 		{
 			cout << "insert <string>" << endl;
@@ -66,7 +64,8 @@ Start:
 		}
 		
 	}
-	
+	// Now check for a command that requires a parameter. This means that we will get another input from the console 
+	// before we execute further code. 
 	else if (strInput == "insert" || strInput == "delete" || strInput == "search" || strInput == "next" || strInput == "prev")
 	{
 		if (strInput == "insert")
@@ -76,7 +75,9 @@ Start:
 		}
 		else if (strInput == "delete")
 		{
-			//todo: Write delete function
+			cin >> strInput;
+			strOutput = searchStructure.Delete(strInput);
+			cout << strOutput << endl;
 		}
 		else if (strInput == "search")
 		{
@@ -87,24 +88,22 @@ Start:
 		}
 		else if (strInput == "next")
 		{
-			//todo: Write next function
 			cin >> strInput;
 			strOutput = searchStructure.Next(strInput);
 			cout << strOutput << endl;
 		}
 		else if (strInput == "prev")
 		{
-			//todo: Write the prev function
 			cin >> strInput;
 			strOutput = searchStructure.Prev(strInput);
 			cout << strOutput << endl;
 		}
 	}
-	else
+	else // The input did not match any of the allowable commands
 	{
 		cout << "Invalid command please try again" << endl;
 	}
-	goto Start;
+	goto Start; // jump back to start since exit was not entered
 	Exit:
 	return 0;
 }

@@ -5,7 +5,7 @@ class Structure
 {
 public:
 	void Insert(std::string strWord);
-	void Delete();
+	std::string Delete(std::string strWord);
 	void List();
 	std::string Search(std::string strWord);
 	std::string Min();
@@ -21,13 +21,14 @@ private:
 	Node* pastNode;
 	Node* treeSearch(std::string strWord);
 	Node foundNode;
+	void TreeDelete(Node* startNode);
 	Node* TreeMin(Node* startNode);
 	Node* TreeMax(Node* startNode);
 	Node* TreePredecessor(Node* startNode);
 	Node* TreeSuccessor(Node* startNode);
 	void Traversal(Node* startNode);
 	void treeInsert(std::string strWord);
-	void treeDelete();
+	void Transplant(Node* nodeU, Node* nodeV);
 	std::string strOutput;
 };
 
